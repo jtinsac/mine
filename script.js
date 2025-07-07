@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
 function createFloatingHearts() {
   const container = document.getElementById('contentHearts');
   const hearts = ['💜', '💕', '💖', '💗', '💓', '💝'];
-  
+
   setInterval(() => {
     const heart = document.createElement('div');
     heart.className = 'heart';
@@ -19,9 +19,9 @@ function createFloatingHearts() {
     heart.style.position = 'absolute';
     heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
     heart.style.animationDelay = Math.random() * 2 + 's';
-    
+
     container.appendChild(heart);
-    
+
     setTimeout(() => {
       heart.remove();
     }, 6000);
@@ -32,30 +32,6 @@ function createFloatingHearts() {
 const musicBtn = document.getElementById('musicBtn');
 const bgMusic = document.getElementById('bgMusic');
 let isPlaying = false;
-
-// Auto-play music when page loads, fallback to click/touch if blocked
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    bgMusic.play().then(() => {
-      isPlaying = true;
-      musicBtn.textContent = '⏸️';
-    }).catch(error => {
-      console.log('Auto-play prevented by browser:', error);
-      musicBtn.textContent = '🎵';
-      // Fallback: play on first user interaction (click or touch)
-      const tryPlay = () => {
-        bgMusic.play().then(() => {
-          isPlaying = true;
-          musicBtn.textContent = '⏸️';
-          window.removeEventListener('click', tryPlay);
-          window.removeEventListener('touchstart', tryPlay);
-        });
-      };
-      window.addEventListener('click', tryPlay);
-      window.addEventListener('touchstart', tryPlay);
-    });
-  }, 1000);
-});
 
 musicBtn.addEventListener('click', () => {
   if (isPlaying) {
@@ -125,9 +101,9 @@ document.addEventListener('mousemove', (e) => {
   heart.style.fontSize = '20px';
   heart.style.zIndex = '9999';
   heart.style.animation = 'fadeOut 1s forwards';
-  
+
   document.body.appendChild(heart);
-  
+
   setTimeout(() => {
     heart.remove();
   }, 1000);
@@ -145,7 +121,7 @@ document.addEventListener('keydown', (e) => {
   if (konamiCode.length > konamiSequence.length) {
     konamiCode.shift();
   }
-  
+
   if (konamiCode.join(',') === konamiSequence.join(',')) {
     alert('🎉 You found the secret! You really are amazing! 💜');
     document.body.style.background = 'linear-gradient(45deg, #ff69b4, #4b2e83, #ffd700)';
@@ -156,7 +132,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Showcase Carousel (one image at a time)
+// Showcase Carousel
 (function() {
   const items = document.querySelectorAll('.showcase-item');
   let current = 0;
@@ -224,7 +200,6 @@ document.addEventListener('keydown', (e) => {
   function animate() {
     ctx.clearRect(0, 0, width, height);
     for (let p of particles) {
-      // Move in a gentle orbit around the mouse
       p.angle += p.speed;
       const targetX = mouse.x + Math.cos(p.angle) * p.orbit;
       const targetY = mouse.y + Math.sin(p.angle) * p.orbit;
@@ -242,14 +217,13 @@ document.addEventListener('keydown', (e) => {
   animate();
 })();
 
-// Love Letter Overlay Logic
+// Love Letter Overlay Logic + MUSIC ON CLOSE
 (function() {
   const overlay = document.getElementById('loveLetterOverlay');
   const envelope = document.getElementById('envelope');
   const letterModal = document.getElementById('letterModal');
   const closeBtn = document.getElementById('closeLetterBtn');
 
-  // Block scrolling while overlay is active
   function blockScroll() {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
@@ -269,13 +243,20 @@ document.addEventListener('keydown', (e) => {
       letterModal.classList.add('active');
       envelope.parentElement.style.display = 'none';
     });
+
     closeBtn.addEventListener('click', function() {
       overlay.classList.add('hide');
       allowScroll();
+
+      // ✅ Play music when letter is closed
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        musicBtn.textContent = '⏸️';
+      }).catch(console.error);
     });
-    // Prevent scroll on touch devices while overlay is active
+
     overlay.addEventListener('touchmove', function(e) {
       if (!overlay.classList.contains('hide')) e.preventDefault();
     }, { passive: false });
   }
-})(); 
+})();
