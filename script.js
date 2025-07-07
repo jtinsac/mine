@@ -260,3 +260,34 @@ document.addEventListener('keydown', (e) => {
     }, { passive: false });
   }
 })();
+
+// Lyrics Sync with Audio
+(function() {
+  const audio = document.getElementById('bgMusic');
+  const lyricsContainer = document.getElementById('lyricsContainer');
+  if (!audio || !lyricsContainer) return;
+  const lines = Array.from(lyricsContainer.querySelectorAll('.lyric-line'));
+  const times = lines.map(line => parseFloat(line.getAttribute('data-time')));
+
+  function syncLyrics() {
+    const currentTime = audio.currentTime;
+    let activeIndex = 0;
+    for (let i = 0; i < times.length; i++) {
+      if (currentTime >= times[i]) activeIndex = i;
+    }
+    lines.forEach((line, i) => {
+      if (i === activeIndex) {
+        line.classList.add('active');
+        // Scroll into view if needed
+        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        line.classList.remove('active');
+      }
+    });
+  }
+
+  audio.addEventListener('timeupdate', syncLyrics);
+  // Reset on song restart
+  audio.addEventListener('seeked', syncLyrics);
+  audio.addEventListener('play', syncLyrics);
+})();
