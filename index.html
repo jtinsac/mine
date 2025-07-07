@@ -34,14 +34,13 @@
     <div class="heart-loader">💜</div>
   </div>
 
-<div class="music-player">
-  <button class="music-btn" id="musicBtn">🎵</button>
-  <audio id="bgMusic" loop>
-    <source src="mine.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
+  <div class="music-player">
+    <button class="music-btn" id="musicBtn">🎵</button>
+    <audio id="bgMusic" loop>
+      <source src="mine.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
   <!-- Secret Button -->
   <button class="secret-btn" id="secretBtn">💎</button>
@@ -78,13 +77,29 @@
       <span class="close">&times;</span>
       <h2>💎 Secret Message 💎</h2>
       <p>Eme lang, walang secret message</p>
-    
     </div>
   </div>
 
   <!-- Floating Hearts Background (moved to end) -->
   <div class="floating-hearts" id="floatingHearts"></div>
 
+  <!-- JavaScript Files -->
   <script src="script.js"></script>
+
+  <!-- Audio Play Logic -->
+  <script>
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+
+    musicBtn.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.textContent = "⏸️";
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = "🎵";
+      }
+    });
+  </script>
 </body>
-</html
+</html>
