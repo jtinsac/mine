@@ -19,6 +19,10 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #particles-bg {
@@ -137,78 +141,65 @@ header h1:hover {
   margin-bottom: 32px;
 }
 
+/* Optimized Showcase Container and Image Styles */
 .showcase-container {
-  width: 520px;
-  height: 340px;
-  max-width: 90vw;
-  max-height: 60vw;
-  background: rgba(255,255,255,0.85);
+  background: transparent;
   border-radius: 2rem;
-  box-shadow: 0 12px 48px 0 rgba(75,46,131,0.18), 0 2px 8px 0 rgba(75,46,131,0.10);
-  display: flex;
-  align-items: center;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: stretch;
   justify-content: center;
-  overflow: visible;
+  padding: 2.2rem;
   position: relative;
   transition: box-shadow 0.3s;
-}
-
-.showcase-container:hover {
-  box-shadow: 0 24px 64px 0 rgba(75,46,131,0.25), 0 4px 16px 0 rgba(75,46,131,0.12);
-}
-
-.showcase-container:hover .showcase-item.active img {
-  transform: scale(1.06) translateY(-12px);
-  box-shadow: 0 16px 48px 0 rgba(75,46,131,0.22), 0 4px 16px 0 rgba(75,46,131,0.14);
+  box-sizing: border-box;
+  width: 100%;
+  height: 60vh;
+  max-width: 90vw;
+  max-height: 70vh;
+  overflow: hidden;
 }
 
 .showcase-item {
-  width: 100%;
-  height: 100%;
   display: none;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 0; left: 0;
-  opacity: 0;
-  transition: opacity 0.7s;
-}
-
-.showcase-item.active {
-  display: flex;
-  opacity: 1;
-  z-index: 1;
-  animation: fadeIn 1s;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  position: relative;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
 }
 
 .showcase-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 2rem;
-  box-shadow: 0 2px 12px rgba(75,46,131,0.08);
+  border-radius: 1.5rem;
+  box-shadow: none;
+  display: block;
   transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.4s;
+}
+
+.showcase-item.active {
+  display: flex;
 }
 
 .showcase-overlay {
   position: absolute;
-  bottom: 18px;
   left: 0;
   right: 0;
+  bottom: 0;
   background: rgba(75, 46, 131, 0.7);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   text-align: center;
   padding: 0.7rem 0.5rem;
-  border-radius: 0 0 2rem 2rem;
+  border-radius: 0 0 1.5rem 1.5rem;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
   z-index: 2;
+  pointer-events: none;
 }
 
 /* Interactive Timeline */
@@ -581,15 +572,13 @@ footer p:hover {
     margin-bottom: 16px;
   }
   .showcase-container {
-    width: 98vw;
-    height: 48vw;
-    min-height: 160px;
+    padding: 0.7rem;
+    max-width: 98vw;
     max-height: 60vw;
-    border-radius: 1.2rem;
-    padding: 0;
   }
   .showcase-item img {
-    border-radius: 1.2rem;
+    max-width: 98vw;
+    max-height: 40vh;
   }
   .showcase-overlay {
     border-radius: 0 0 1.2rem 1.2rem;
@@ -630,6 +619,12 @@ footer p:hover {
     max-width: 100vw;
     max-height: 100vh;
   }
+  .lyrics-section {
+    padding: 1.2rem 0.8rem 1.2rem 0.8rem;
+  }
+  .lyrics-container {
+    padding: 0.4rem 0.2rem 0.4rem 0.2rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -638,12 +633,23 @@ footer p:hover {
     padding: 0.4rem 0.2rem;
   }
   .showcase-container {
-    min-height: 100px;
-    border-radius: 0.7rem;
+    padding: 0.3rem;
+    max-width: 100vw;
+    max-height: 50vw;
+  }
+  .showcase-item img {
+    max-width: 100vw;
+    max-height: 30vh;
   }
   .showcase-overlay {
     font-size: 0.8rem;
     border-radius: 0 0 0.7rem 0.7rem;
+  }
+  .lyrics-section {
+    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+  }
+  .lyrics-container {
+    padding: 0.18rem 0.08rem 0.18rem 0.08rem;
   }
 }
 
@@ -803,5 +809,223 @@ footer p:hover {
   .close-letter-btn {
     font-size: 0.95rem;
     padding: 0.5rem 1.1rem;
+  }
+}
+
+.ios-card {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  margin: 48px auto 48px auto;
+  background: linear-gradient(135deg, rgba(255,255,255,0.75) 60%, rgba(211,191,255,0.55) 100%);
+  border-radius: 2.2rem;
+  box-shadow: 0 8px 32px 0 rgba(75,46,131,0.18), 0 2px 8px 0 rgba(75,46,131,0.10);
+  max-width: 420px;
+  width: 95vw;
+  padding: 2.2rem 1.2rem 2.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1.5px solid rgba(211,191,255,0.18);
+}
+
+.showcase-ios {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.showcase-container:hover .showcase-item.active img {
+  transform: scale(1.06) translateY(-12px);
+  box-shadow: 0 16px 48px 0 rgba(75,46,131,0.22), 0 4px 16px 0 rgba(75,46,131,0.14);
+}
+
+.showcase-overlay {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  background: rgba(75, 46, 131, 0.7);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+.lyrics-section {
+  width: 100%;
+  margin-top: 1.2rem;
+  background: linear-gradient(120deg, rgba(255,255,255,0.7) 60%, rgba(211,191,255,0.45) 100%);
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px rgba(75,46,131,0.07);
+  padding: 2rem 1.5rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(211,191,255,0.13);
+}
+
+.lyrics-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.lyrics-container {
+  width: 100%;
+  max-height: 180px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.lyric-line {
+  font-size: 1.05rem;
+  color: #6a359c;
+  padding: 0.3rem 0.2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.1rem;
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+}
+
+.lyric-line.active {
+  background: linear-gradient(90deg, var(--primary) 60%, var(--pink) 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.13rem;
+  box-shadow: 0 2px 8px rgba(75,46,131,0.10);
+}
+
+@media (max-width: 700px) {
+  .ios-card {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+  .showcase-container {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 0.7rem 0.2rem;
+  }
+  .showcase-item img {
+    height: auto;
+    min-height: 0;
+    max-width: 100vw;
+    max-height: 60vw;
+    object-fit: contain;
+  }
+  .lyrics-container {
+    max-height: 80px;
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .ios-card {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .showcase-container {
+    min-height: 110px;
+    height: 60vw;
+  }
+  .showcase-item img {
+    height: 60vw;
+  }
+  .lyrics-container {
+    max-height: 110px;
+  }
+}
+
+.ios-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.2rem;
+}
+
+.showcase-ios {
+  flex: 1 1 60%;
+  min-width: 0;
+}
+
+.lyrics-section {
+  flex: 1 1 40%;
+  min-width: 0;
+  max-width: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lyrics-container {
+  flex: 1 1 auto;
+  max-height: 60vh;
+  min-height: 350px;
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.ios-card {
+  max-width: 1100px;
+  width: 95vw;
+  padding: 2.2rem 2.2rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 900px) {
+  .ios-flex-row {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .showcase-ios, .lyrics-section {
+    flex: 1 1 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .showcase-container {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 1.2rem 0.5rem;
+  }
+  .showcase-item img {
+    height: auto;
+    min-height: 0;
+    max-width: 100vw;
+    max-height: 60vw;
+    object-fit: contain;
+  }
+  .lyrics-container {
+    max-height: 120px;
+    min-height: 80px;
+  }
+  .ios-card {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .showcase-item img {
+    object-fit: contain;
   }
 } 
