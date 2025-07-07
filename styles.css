@@ -11,18 +11,13 @@
   box-sizing: border-box;
 }
 
-html, body {
-  min-height: 100vh;
-  height: auto;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
 body {
+  margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, var(--primary), var(--pink));
   color: var(--primary);
+  overflow-x: hidden;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -818,8 +813,6 @@ footer p:hover {
 }
 
 .ios-card {
-  margin-top: 0.5rem;
-  padding-top: 1.2rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   margin: 48px auto 48px auto;
@@ -919,8 +912,6 @@ footer p:hover {
   .ios-card {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
-    margin-top: 0.1rem;
-    padding-top: 0.4rem;
   }
   .showcase-container {
     height: auto;
@@ -1029,8 +1020,6 @@ footer p:hover {
   .ios-card {
     max-width: 98vw;
     padding: 1.2rem 0.5rem;
-    margin-top: 0.2rem;
-    padding-top: 0.7rem;
     margin-bottom: 1.2rem;
   }
 }
