@@ -34,17 +34,19 @@
     <div class="heart-loader">💜</div>
   </div>
 
+  <!-- Music Player -->
   <div class="music-player">
     <button class="music-btn" id="musicBtn">🎵</button>
-<audio id="bgMusic" loop>
-  <source src="mine.mp3" type="audio/mpeg">
-</audio>
-
+    <audio id="bgMusic" loop>
+      <source src="mine.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 
   <!-- Secret Button -->
   <button class="secret-btn" id="secretBtn">💎</button>
 
+  <!-- Header -->
   <header>
     <h1 id="mainTitle">You Are the Best Thing That's Ever Been Mine 💜</h1>
   </header>
@@ -71,7 +73,7 @@
     </div>
   </section>
 
-  <!-- Modal -->
+  <!-- Secret Modal -->
   <div id="secretModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -80,26 +82,10 @@
     </div>
   </div>
 
-  <!-- Floating Hearts Background (moved to end) -->
+  <!-- Floating Hearts Background -->
   <div class="floating-hearts" id="floatingHearts"></div>
 
-  <!-- JavaScript Files -->
+  <!-- Your main script file (already handles music, letter, effects, etc.) -->
   <script src="script.js"></script>
-
-  <!-- Audio Play Logic -->
-  <script>
-    const musicBtn = document.getElementById('musicBtn');
-    const bgMusic = document.getElementById('bgMusic');
-
-    musicBtn.addEventListener('click', () => {
-      if (bgMusic.paused) {
-        bgMusic.play();
-        musicBtn.textContent = "⏸️";
-      } else {
-        bgMusic.pause();
-        musicBtn.textContent = "🎵";
-      }
-    });
-  </script>
 </body>
 </html>
